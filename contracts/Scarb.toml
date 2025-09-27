@@ -1,0 +1,15 @@
+[package]
+name = "starknet_defi_contracts"
+version = "0.1.0"
+edition = "2023_11"
+
+[dependencies]
+starknet = "2.6.3"
+openzeppelin = { git = "https://github.com/OpenZeppelin/cairo-contracts.git", tag = "v0.14.0" }
+
+[[target.starknet-contract]]
+sierra = true
+
+[scripts]
+test = "scarb cairo-test -f"
+deploy = "starkli declare target/dev/starknet_defi_contracts_PaymentProcessor.contract_class.json && starkli deploy"

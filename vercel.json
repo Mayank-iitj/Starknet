@@ -1,0 +1,47 @@
+{
+  "version": 2,
+  "name": "starknet-ultra-defi",
+  "framework": "nextjs",
+  "buildCommand": "cd frontend && npm run vercel-build",
+  "outputDirectory": "frontend/.next",
+  "installCommand": "cd frontend && npm install",
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "build": {
+    "env": {
+      "NODE_ENV": "production",
+      "NEXT_PUBLIC_APP_ENV": "production",
+      "NEXT_PUBLIC_STARKNET_NETWORK": "mainnet-alpha"
+    }
+  },
+  "functions": {
+    "frontend/app/**/*.js": {
+      "runtime": "nodejs18.x"
+    }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
+      ]
+    }
+  ],
+  "regions": ["iad1", "sfo1", "lhr1"]
+}
